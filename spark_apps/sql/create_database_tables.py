@@ -1,6 +1,11 @@
 from pyspark.sql import SparkSession
 import os,sys, logging
 
+from pathlib import Path
+import shutil
+
+
+
 logging.basicConfig(level=logging.INFO, format=' %(asctime)s : %(levelname)s : %(name)s : %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 logger = logging.getLogger(__name__)
 
@@ -17,13 +22,20 @@ class CreateDatabase():
         
     def create_database(self):
 
+        dirpath = Path('spark-warehouse')
+        if dirpath.exists() and dirpath.is_dir():
+            shutil.rmtree(dirpath)
+
         logger.info("started creating a database and tables")
 
+        
         self.spark.sql("DROP DATABASE IF EXISTS moviebase CASCADE")
+        
         self.spark.sql("CREATE DATABASE moviebase")
         self.spark.sql("USE moviebase")
 
-        logger.info("database created")  
+        logger.info("database created")
+         
 
         movies_data = self.spark.read.text("./data/movies.dat")
         movies_data.createOrReplaceTempView("movies_temp")
@@ -75,11 +87,5 @@ class CreateDatabase():
         """).write.mode("overwrite").saveAsTable("moviebase.ratings")
 
         logger.info("ratings table created")
-
         
-
-if __name__ == "__main__":
-
-    obj = CreateDatabase()
-
-    obj.create_database()
+        return self.spark
