@@ -3,12 +3,10 @@ from spark_apps.sql import \
         movies_tasks, create_database_tables,\
         ratings_tasks
 
-
-router = APIRouter()
-
-
 create_obj = create_database_tables.CreateDatabase()
 spark_obj = create_obj.create_database()
+router = APIRouter()
+
 
 movie_obj = movies_tasks.MovieTasks(spark_obj)
 ratings_obj = ratings_tasks.RatingsTasks(spark_obj)

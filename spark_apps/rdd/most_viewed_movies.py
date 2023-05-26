@@ -1,5 +1,4 @@
 
-from pyspark.sql import SparkSession
 import os,sys, logging
 
 logging.basicConfig(level=logging.INFO, format=' %(asctime)s : %(levelname)s : %(name)s : %(message)s', datefmt='%d-%b-%y %H:%M:%S')
@@ -7,14 +6,12 @@ logger = logging.getLogger(__name__)
 
 class MostViewedMovies():
 
-    def __init__(self):
+    def __init__(self, spark_obj):
 
         os.environ['PYSPARK_PYTHON'] = sys.executable
         os.environ['PYSPARK_DRIVER_PYTHON'] = sys.executable
 
-        self.spark = SparkSession.builder \
-                    .appName("rdd_tasks") \
-                    .getOrCreate()
+        self.spark = spark_obj
     
 
     def get_most_viewed_movies(self):
@@ -44,6 +41,5 @@ class MostViewedMovies():
         result_dict = top_movies_list_rdd.collectAsMap()
         
         logger.info("finished task")
-        sc.stop()
 
         return result_dict

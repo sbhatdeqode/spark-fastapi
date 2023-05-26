@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from apis.sql_apis import spark_obj
 from spark_apps.rdd import \
     most_viewed_movies, distinct_genres, movies_by_genres, \
     movies_starts_with_numbers_letters, latest_movies
@@ -9,7 +10,7 @@ router = APIRouter()
 @router.get("/rdd/most_watched_movies")
 def read_root():
 
-    obj = most_viewed_movies.MostViewedMovies()
+    obj = most_viewed_movies.MostViewedMovies(spark_obj)
     return obj.get_most_viewed_movies()
 
 @router.get("/rdd/distinct_genres")
