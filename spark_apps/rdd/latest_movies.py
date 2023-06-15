@@ -6,14 +6,9 @@ logger = logging.getLogger(__name__)
 
 class LatestMovies():
 
-    def __init__(self):
+    def __init__(self, spark_obj):
 
-        os.environ['PYSPARK_PYTHON'] = sys.executable
-        os.environ['PYSPARK_DRIVER_PYTHON'] = sys.executable
-
-        self.spark = SparkSession.builder \
-                    .appName("rdd_tasks") \
-                    .getOrCreate()
+        self.spark = spark_obj
     
 
     def get_latest_movies(self):
@@ -33,7 +28,3 @@ class LatestMovies():
 
         return latest_movies.map(lambda lines: lines.split("::")[1]).collect()
 
-if __name__ == '__main__':
-
-    obj = LatestMovies()
-    print(obj.get_latest_movies()) 
