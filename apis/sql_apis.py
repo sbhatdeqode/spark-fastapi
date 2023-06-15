@@ -12,32 +12,32 @@ movie_obj = movies_tasks.MovieTasks(spark_obj)
 ratings_obj = ratings_tasks.RatingsTasks(spark_obj)
 
 @router.get("/sql/oldest_movies")
-def read_root():
+def oldest_movies():
 
    
     return movie_obj.get_oldest_movies()
 
 @router.get("/sql/get_movies_count_by_year")
-def read_root():
+def movies_count_by_year():
 
     return movie_obj.get_movies_count_by_year()
 
 @router.get("/sql/get_movies_count_by_ratings")
-def read_root():
+def movies_count_by_ratings():
 
     return ratings_obj.get_movies_count_by_ratings()
 
 @router.get("/sql/get_users_count_by_movies")
-def read_root():
+def movies_count_by_ratings():
 
     return ratings_obj.get_users_per_movie()
 
 @router.get("/sql/get_total_ratings_per_movie")
-def read_root():
+def total_ratings_per_movie():
 
     return ratings_obj.get_total_ratings_per_movie()
 
 @router.get("/sql/get_avg_ratings_per_movie")
-def read_root():
+def avg_ratings_per_movie():
 
     return ratings_obj.get_avg_ratings_per_movie()

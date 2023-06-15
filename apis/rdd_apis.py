@@ -1,8 +1,11 @@
+import os,sys
 from fastapi import APIRouter
 from apis.sql_apis import spark_obj
 from spark_apps.rdd import \
     most_viewed_movies, distinct_genres, movies_by_genres, \
     movies_starts_with_numbers_letters, latest_movies
+
+
 
 router = APIRouter()
 

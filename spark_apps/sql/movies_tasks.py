@@ -9,9 +9,6 @@ class MovieTasks():
 
     def __init__(self, spark_obj):
 
-        os.environ['PYSPARK_PYTHON'] = sys.executable
-        os.environ['PYSPARK_DRIVER_PYTHON'] = sys.executable
-
         self.spark = spark_obj
         
     def get_oldest_movies(self):

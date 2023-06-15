@@ -1,8 +1,6 @@
 import os,sys, logging
 from pyspark import SparkFiles
-from pyspark.sql import SparkSession, Row
-from pyspark.sql.functions import split, substring
-from pyspark.sql.types import StructType, StructField, StringType
+from pyspark.sql import SparkSession
 
 logging.basicConfig(level=logging.INFO, format=' %(asctime)s : %(levelname)s : %(name)s : %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 logger = logging.getLogger(__name__)

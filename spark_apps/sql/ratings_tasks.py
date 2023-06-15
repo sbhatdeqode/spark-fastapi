@@ -1,4 +1,4 @@
-import os,sys, logging
+import logging
 from .create_database_tables import CreateDatabase
 
 logging.basicConfig(level=logging.INFO, format=' %(asctime)s : %(levelname)s : %(name)s : %(message)s', datefmt='%d-%b-%y %H:%M:%S')
