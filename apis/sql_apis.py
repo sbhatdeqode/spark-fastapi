@@ -3,11 +3,10 @@ from spark_apps.sql import \
         movies_tasks, create_database_tables,\
         ratings_tasks
 
-create_obj = create_database_tables.CreateDatabase()
-spark_obj = create_obj.create_database()
 router = APIRouter()
 
-
+create_obj = create_database_tables.CreateDatabase()
+spark_obj = create_obj.create_database()
 movie_obj = movies_tasks.MovieTasks(spark_obj)
 ratings_obj = ratings_tasks.RatingsTasks(spark_obj)
 
@@ -28,7 +27,7 @@ def movies_count_by_ratings():
     return ratings_obj.get_movies_count_by_ratings()
 
 @router.get("/sql/get_users_count_by_movies")
-def movies_count_by_ratings():
+def users_count_by_movies():
 
     return ratings_obj.get_users_per_movie()
 
