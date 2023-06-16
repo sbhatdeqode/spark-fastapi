@@ -1,3 +1,7 @@
+"""
+    Test module for sql solutions.
+"""
+
 import unittest
 
 from spark_apps.sql import \

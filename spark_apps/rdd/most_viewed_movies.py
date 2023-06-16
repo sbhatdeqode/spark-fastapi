@@ -1,10 +1,17 @@
+"""
+    Module to get Most Viewed Movies.
+"""
 
-import os,sys, logging
+import logging
 
 logging.basicConfig(level=logging.INFO, format=' %(asctime)s : %(levelname)s : %(name)s : %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 logger = logging.getLogger(__name__)
 
 class MostViewedMovies():
+
+    """
+        class to get Most Viewed Movies.
+    """
 
     def __init__(self, spark_obj):
 
@@ -12,6 +19,10 @@ class MostViewedMovies():
     
 
     def get_most_viewed_movies(self):
+
+        """
+            method to get Most Viewed Movies.
+        """
         
         logger.info("started task")
 

@@ -1,13 +1,22 @@
-from pyspark.sql import SparkSession
-import os,sys, logging
+"""
+    Module to Create a Database.
+"""
 
+from pyspark.sql import SparkSession
 from pathlib import Path
+
+import os,sys, logging
 import shutil
 
 logging.basicConfig(level=logging.INFO, format=' %(asctime)s : %(levelname)s : %(name)s : %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 logger = logging.getLogger(__name__)
 
+
 class CreateDatabase():
+
+    """
+        class to Create a Database.
+    """
 
     def __init__(self):
 
@@ -15,10 +24,15 @@ class CreateDatabase():
         os.environ['PYSPARK_DRIVER_PYTHON'] = sys.executable
 
         self.spark = SparkSession.builder \
-                    .appName("sql_tasks") \
+                    .appName("spark_tasks") \
                     .getOrCreate()
-        
+
+
     def create_database(self):
+
+        """
+            method to Create a Database.
+        """
 
         dirpath = Path('spark-warehouse')
         if dirpath.exists() and dirpath.is_dir():
@@ -26,7 +40,6 @@ class CreateDatabase():
 
         logger.info("started creating a database and tables")
 
-        
         self.spark.sql("DROP DATABASE IF EXISTS moviebase CASCADE")
         
         self.spark.sql("CREATE DATABASE moviebase")
@@ -34,7 +47,6 @@ class CreateDatabase():
 
         logger.info("database created")
          
-
         movies_data = self.spark.read.text("./data/movies.dat")
         movies_data.createOrReplaceTempView("movies_temp")
 
@@ -57,7 +69,7 @@ class CreateDatabase():
 
         logger.info("movies table created")
 
-       
+
         self.spark.sql(
             """
             

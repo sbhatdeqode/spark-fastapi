@@ -1,3 +1,7 @@
+"""
+    Test module for rdd solutions.
+"""
+
 import unittest
 
 from spark_apps.rdd import  \

@@ -1,6 +1,9 @@
+"""
+    Module to transform users data.
+"""
+
 import os,sys, logging
 from pyspark.sql import SparkSession, Row
-from pyspark.sql.functions import split, substring
 from pyspark.sql.types import StructType, StructField, StringType
 
 logging.basicConfig(level=logging.INFO, format=' %(asctime)s : %(levelname)s : %(name)s : %(message)s', datefmt='%d-%b-%y %H:%M:%S')
@@ -9,12 +12,20 @@ logger = logging.getLogger(__name__)
 
 class TransformUsers():
 
+    """
+        Class to transform users data.
+    """
+
     def __init__(self, spark_obj):
 
         self.spark = spark_obj
 
 
     def transform(self):
+
+        """
+            method to transform users data.
+        """
 
         logger.info("started users transforming")
 
@@ -34,6 +45,7 @@ class TransformUsers():
         user_rdd = self.spark.createDataFrame(user_rdd, schema)
 
         user_rdd.show(5)
+
 
 os.environ['PYSPARK_PYTHON'] = sys.executable
 os.environ['PYSPARK_DRIVER_PYTHON'] = sys.executable

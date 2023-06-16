@@ -1,17 +1,29 @@
-from pyspark.sql import SparkSession
-import os,sys, logging
-from .create_database_tables import CreateDatabase
+"""
+    Module to do tasks about movies data.
+"""
+
+import logging
+
 
 logging.basicConfig(level=logging.INFO, format=' %(asctime)s : %(levelname)s : %(name)s : %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 logger = logging.getLogger(__name__)
 
 class MovieTasks():
 
+    """
+        class to do tasks about movies data.
+    """
+
     def __init__(self, spark_obj):
 
         self.spark = spark_obj
-        
+
+
     def get_oldest_movies(self):
+
+        """
+            method to get_oldest_movies.
+        """
 
         logger.info("computing oldest movies")
 
@@ -31,11 +43,15 @@ class MovieTasks():
         
         return list_movies
     
+
     def get_movies_count_by_year(self):
+
+        """
+            method to get_movies_count_by_year.
+        """
 
         logger.info("computing movies count by year")
 
-        
         query = """
                     SELECT year, count(year) as number_of_movies
                     FROM moviebase.movies

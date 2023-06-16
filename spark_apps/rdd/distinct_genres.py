@@ -1,10 +1,16 @@
-from pyspark.sql import SparkSession
-import logging, os, sys
+"""
+    Module to get Distinct Genres.
+"""
+import logging
 
 logging.basicConfig(level=logging.INFO, format=' %(asctime)s : %(levelname)s : %(name)s : %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 logger = logging.getLogger(__name__)
 
 class DistinctGenres():
+
+    """
+        class to get Distinct Genres.
+    """
 
     def __init__(self, spark_obj):
         
@@ -12,6 +18,10 @@ class DistinctGenres():
         
         
     def get_distinct_genres(self):
+
+        """
+            method to get Distinct Genres.
+        """
 
         logger.info("started task")
 

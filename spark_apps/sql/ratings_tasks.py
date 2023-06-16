@@ -1,10 +1,18 @@
+"""
+    Module to do tasks about ratings data.
+"""
+
 import logging
-from .create_database_tables import CreateDatabase
+
 
 logging.basicConfig(level=logging.INFO, format=' %(asctime)s : %(levelname)s : %(name)s : %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 logger = logging.getLogger(__name__)
 
 class RatingsTasks():
+
+    """
+        class to do tasks about ratings data.
+    """
 
     def __init__(self, spark_obj):
 
@@ -13,6 +21,10 @@ class RatingsTasks():
 
 
     def get_movies_count_by_ratings(self):
+
+        """
+            method to get_movies_count_by_ratings.
+        """
 
         logger.info("computing movies_by_ratings")
         movies_count = self.spark.sql(
@@ -31,6 +43,10 @@ class RatingsTasks():
     
 
     def get_users_per_movie(self):
+
+        """
+            method to get_users_per_movie.
+        """
     
         logger.info("computing users per movie")
 
@@ -53,6 +69,10 @@ class RatingsTasks():
 
 
     def get_total_ratings_per_movie(self):
+
+        """
+            method to get_total_ratings_per_movie.
+        """
     
         logger.info("computing total_ratings_per_movie")
 
@@ -74,6 +94,10 @@ class RatingsTasks():
     
 
     def get_avg_ratings_per_movie(self):
+
+        """
+            method to get_avg_ratings_per_movie.
+        """
     
         logger.info("computing avg_ratings_per_movie")
 
@@ -92,4 +116,3 @@ class RatingsTasks():
     
         logger.info("computing finished")
         return list_ratings_avg
-

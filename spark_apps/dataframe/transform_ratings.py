@@ -1,3 +1,7 @@
+"""
+    Module to transform ratings data.
+"""
+
 import os,sys, logging
 from pyspark.sql import SparkSession, Row
 from pyspark.sql.types import StructType, StructField, StringType
@@ -8,12 +12,20 @@ logger = logging.getLogger(__name__)
 
 class TransformRatings():
 
+    """
+        Class to transform ratings data.
+    """
+
     def __init__(self, spark_obj):
 
         self.spark = spark_obj
 
 
     def transform(self):
+
+        """
+            method to transform ratings data.
+        """
 
         logger.info("started ratings transforming")
 
@@ -34,10 +46,11 @@ class TransformRatings():
 
         ratings_rdd.show(5)
 
+
 os.environ['PYSPARK_PYTHON'] = sys.executable
 os.environ['PYSPARK_DRIVER_PYTHON'] = sys.executable
 spark = SparkSession.builder \
-                    .appName("sql_tasks") \
+                    .appName("df_tasks") \
                     .getOrCreate()
 obj = TransformRatings(spark)
 

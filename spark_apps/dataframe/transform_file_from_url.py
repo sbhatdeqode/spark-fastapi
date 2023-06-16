@@ -1,3 +1,7 @@
+"""
+    Module to demonstrate downloading file from url and transform it.
+"""
+
 import os,sys, logging
 from pyspark import SparkFiles
 from pyspark.sql import SparkSession
@@ -8,6 +12,10 @@ logger = logging.getLogger(__name__)
 
 class TransformImport():
 
+    """
+        Import and Transformation class.
+    """
+
     def __init__(self, spark_obj):
 
         self.spark = spark_obj
@@ -16,13 +24,15 @@ class TransformImport():
 
     def transform(self):
 
+        """
+            Import and Transformation method.
+        """
+
         logger.info("started importing file and transforming")
 
         url = "https://raw.githubusercontent.com/Thomas-George-T/Movies-Analytics-in-Spark-and-Scala/master/Movielens/users.dat"
-
         self.spark.sparkContext.addFile(url)
 
-    
         df = spark.read.option("sep", "::")\
                         .csv("file://" + SparkFiles.get("users.dat"))
         df = df.selectExpr("_c0 as user_id", "_c1 as gender", "_c2 as age", "_c3 as occupation", "_c4 as Zip_code")
@@ -32,13 +42,20 @@ class TransformImport():
     
     def broadcast(self):
 
+        """
+           broadcast example
+        """
+
         df = self.transform()
         broadcast_var = spark.sparkContext.broadcast(df.collect())
-
-        
         print(broadcast_var.value)
 
+
     def accumulator(self):
+
+        """
+           accumulator example
+        """
 
         df = self.transform()
         df.foreach(self.count_gender)

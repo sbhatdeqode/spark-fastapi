@@ -1,16 +1,29 @@
-from pyspark.sql import SparkSession
-import os,sys, logging
+"""
+    Module to get Movies starts with Numbers or Letters.
+"""
+
+import logging
 
 logging.basicConfig(level=logging.INFO, format=' %(asctime)s : %(levelname)s : %(name)s : %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 logger = logging.getLogger(__name__)
 
+
 class MoviesNumbersLetters():
+
+    """
+        class to get Movies starts with Numbers or Letters.
+    """
 
     def __init__(self, spark_obj):
 
         self.spark = spark_obj
-        
+
+
     def get_movies_count(self):
+
+        """
+            method to get Movies starts with Numbers or Letters.
+        """
 
         logger.info("started task")
 
@@ -36,4 +49,3 @@ class MoviesNumbersLetters():
             "num_of_movies_starts_with_numbers": num_count,
             "total_movies": alpha_count+num_count
         }
-

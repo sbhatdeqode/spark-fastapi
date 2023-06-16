@@ -1,10 +1,18 @@
-from pyspark.sql import SparkSession
-import os,sys, logging
+"""
+    Module to get Latest Movies.
+"""
+
+import logging
 
 logging.basicConfig(level=logging.INFO, format=' %(asctime)s : %(levelname)s : %(name)s : %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 logger = logging.getLogger(__name__)
 
+
 class LatestMovies():
+
+    """
+        class to get Latest Movies.
+    """
 
     def __init__(self, spark_obj):
 
@@ -12,6 +20,10 @@ class LatestMovies():
     
 
     def get_latest_movies(self):
+
+        """
+            method to get Latest Movies.
+        """
 
         logger.info("started task")
 
@@ -27,4 +39,3 @@ class LatestMovies():
         logger.info("finished task")
 
         return latest_movies.map(lambda lines: lines.split("::")[1]).collect()
-

@@ -1,6 +1,10 @@
+"""
+    Module to transform movies data.
+"""
+
 import os,sys, logging
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import split, substring, col, monotonically_increasing_id
+from pyspark.sql.functions import split, substring
 
 logging.basicConfig(level=logging.INFO, format=' %(asctime)s : %(levelname)s : %(name)s : %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 logger = logging.getLogger(__name__)
@@ -8,12 +12,20 @@ logger = logging.getLogger(__name__)
 
 class TransformMovies():
 
+    """
+        Class to transform movies data.
+    """
+
     def __init__(self, spark_obj):
 
         self.spark = spark_obj
 
 
     def transform(self):
+
+        """
+            method to transform movies data.
+        """
 
         logger.info("started movie transforming")
 
@@ -40,7 +52,7 @@ class TransformMovies():
 os.environ['PYSPARK_PYTHON'] = sys.executable
 os.environ['PYSPARK_DRIVER_PYTHON'] = sys.executable
 spark = SparkSession.builder \
-                    .appName("sql_tasks") \
+                    .appName("df_tasks") \
                     .getOrCreate()
 obj = TransformMovies(spark)
 
